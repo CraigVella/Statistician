@@ -1,5 +1,9 @@
 package com.ChaseHQ.Statistician.Database;
 
+/* Added the ability to change the delimiter so you can run scripts that 
+ * contain stored procedures.
+ * - ChaseHQ
+ */
 /*
  * Slightly modified version of the com.ibatis.common.jdbc.ScriptRunner class
  * from the iBATIS Apache project. Only removed dependency on Resource class
