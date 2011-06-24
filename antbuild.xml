@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<project name="Statistician" default="jar">
-    <target name="jar">
-        <jar destfile="C:/Users/Craig/Desktop/mcServer/plugins/Statistician.jar">
-            <fileset dir="bin" />
-        </jar>
-    </target>
-</project>
