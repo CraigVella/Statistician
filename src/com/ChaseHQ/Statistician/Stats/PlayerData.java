@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.bukkit.Location;
 
-import com.ChaseHQ.Statistician.Log;
+//import com.ChaseHQ.Statistician.Log;
 import com.ChaseHQ.Statistician.Database.StatDBSynchDataGetSet;
 import com.ChaseHQ.Statistician.Database.DataValues.StatDBDataStores;
 import com.ChaseHQ.Statistician.Database.DataValues.StatDBDataValues_Players;
@@ -43,7 +43,7 @@ public class PlayerData implements IProcessable {
 	public synchronized void addBlockBreak(String UUID, Integer blockID) {
 		_InternalPlayer ip = _watchedPlayers.get(UUID);
 		if (ip == null) {
-			Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
+			//Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
 			return;
 		}
 		Integer pbb = ip.BlockDestroyed.get(blockID);
@@ -58,7 +58,7 @@ public class PlayerData implements IProcessable {
 	public void incrementStepsTaken(String UUID, Location loc, boolean inMinecart, boolean onPig, boolean inBoat) {
 		_InternalPlayer ip = _watchedPlayers.get(UUID);
 		if (ip == null) {
-			Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
+			//Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
 			return;
 		}
 		try {
@@ -81,7 +81,7 @@ public class PlayerData implements IProcessable {
 	public synchronized void addBlockPlaced(String UUID, Integer blockID) {
 		_InternalPlayer ip = _watchedPlayers.get(UUID);
 		if (ip == null) {
-			Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
+			//Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
 			return;
 		}
 		Integer pbb = ip.BlockPlaced.get(blockID);
@@ -96,7 +96,7 @@ public class PlayerData implements IProcessable {
 	public synchronized void addKillTag(String UUID, KillTag kt) {
 		_InternalPlayer ip = _watchedPlayers.get(UUID);
 		if (ip == null) {
-			Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
+			//Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
 			return;
 		}
 		ip.KillTags.add(kt);
@@ -105,7 +105,7 @@ public class PlayerData implements IProcessable {
 	public synchronized void addItemPickup(String UUID, Integer itemID, Integer amount) {
 		_InternalPlayer ip = _watchedPlayers.get(UUID);
 		if (ip == null) {
-			Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
+			//Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
 			return;
 		}
 		Integer itemStore = ip.ItemPickup.get(itemID);
@@ -119,7 +119,7 @@ public class PlayerData implements IProcessable {
 	public synchronized void addItemDropped(String UUID, Integer itemID, Integer amount) {
 		_InternalPlayer ip = _watchedPlayers.get(UUID);
 		if (ip == null) {
-			Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
+			//Log.ConsoleLog("Tried to set data values on player that was not added to watch '" + UUID + "'");
 			return;
 		}
 		Integer itemStore = ip.ItemDropped.get(itemID);
