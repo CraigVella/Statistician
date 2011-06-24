@@ -2,6 +2,4 @@ name: Statistician
 main: com.ChaseHQ.Statistician.StatisticianPlugin
 version: 1.1
 author: ChaseHQ
-softdepend:
-    - Permissions
 
