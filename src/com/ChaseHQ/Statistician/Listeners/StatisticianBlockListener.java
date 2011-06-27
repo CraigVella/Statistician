@@ -1,5 +1,6 @@
 package com.ChaseHQ.Statistician.Listeners;
 
+import org.bukkit.Material;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockListener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -20,7 +21,8 @@ public class StatisticianBlockListener extends BlockListener {
 	
 	@Override
 	public void onBlockPlace(BlockPlaceEvent event) {
-		edhPlayer.PlayerBlockPlace(event.getPlayer(), event.getBlock().getTypeId());
+		if (event.getBlock().getType() != Material.AIR)
+			edhPlayer.PlayerBlockPlace(event.getPlayer(), event.getBlock().getTypeId());
 	}
 	
 }
