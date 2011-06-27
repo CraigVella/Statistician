@@ -9,8 +9,8 @@ import com.ChaseHQ.Statistician.Log;
 
 
 public class Config {
-	public static final String StatisticianVersion = "1.1.1";
-	public static final Integer DBVersion = 1;
+	public static final String StatisticianVersion = "1.2";
+	public static final Integer DBVersion = 2;
 	public static final String LogPrefix = "[Statistician]";
 	public static final String MainDirectory = "plugins/Statistician/";
 	private static File _configFile = new File(MainDirectory + "DBConfig.yml");

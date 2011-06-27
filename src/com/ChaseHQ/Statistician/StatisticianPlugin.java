@@ -37,6 +37,8 @@ public class StatisticianPlugin extends JavaPlugin {
 		if (_playerData != null)
 			_playerData._processData();
 		
+		StatDB.getDB().callStoredProcedure("pluginShutdown", null);
+		
 		_singleton = null;
 		
 		executor.shutdown();
@@ -67,6 +69,8 @@ public class StatisticianPlugin extends JavaPlugin {
 			getPluginLoader().disablePlugin(this);
 			return;
 		}
+		
+		StatDB.getDB().callStoredProcedure("pluginStartup", null);
 		
 		eventDataHandlerPlayer = new EDHPlayer();
 		

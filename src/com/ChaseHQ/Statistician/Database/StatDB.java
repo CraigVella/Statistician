@@ -99,12 +99,14 @@ public class StatDB {
 	
 	public boolean callStoredProcedure(String procName,List<String> variables) {
 		String storedProcCall = "CALL " + Config.getConfig().get_dbName() + "." + procName + "(";
-		Iterator<String> itr = variables.iterator();
-		while (itr.hasNext()) {
-			String thisVariable = itr.next();
-			storedProcCall += "'" + thisVariable + "',";
+		if (variables != null) {
+			Iterator<String> itr = variables.iterator();
+			while (itr.hasNext()) {
+				String thisVariable = itr.next();
+				storedProcCall += "'" + thisVariable + "',";
+			}
+			storedProcCall = storedProcCall.substring(0, storedProcCall.length() - 1);
 		}
-		storedProcCall = storedProcCall.substring(0, storedProcCall.length() - 1);
 		storedProcCall += ");";
 		try {
 			connection.createStatement().executeUpdate(storedProcCall);
