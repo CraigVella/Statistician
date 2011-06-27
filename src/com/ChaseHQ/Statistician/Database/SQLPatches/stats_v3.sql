@@ -14,7 +14,7 @@ ALTER TABLE `blocks` CHANGE `num_placed` `num_placed` BIGINT UNSIGNED DEFAULT '0
 -- ------------------------
 
 ALTER TABLE `pickup_drop` CHANGE `num_pickedup` `num_pickedup` BIGINT UNSIGNED DEFAULT '0';
-ALTER TABLE `pickup_drop` CHANGE `num_dropped` `num_dropped` BIGINT UNSIGNEDDEFAULT '0';
+ALTER TABLE `pickup_drop` CHANGE `num_dropped` `num_dropped` BIGINT UNSIGNED DEFAULT '0';
 
 -- ------------------------
 -- Fixes for `players` table
@@ -25,3 +25,9 @@ ALTER TABLE `players` CHANGE `distance_traveled` `distance_traveled` BIGINT UNSI
 ALTER TABLE `players` CHANGE `distance_traveled_in_minecart` `distance_traveled_in_minecart` BIGINT UNSIGNED DEFAULT '0';
 ALTER TABLE `players` CHANGE `distance_traveled_in_boat` `distance_traveled_in_boat` BIGINT UNSIGNED DEFAULT '0';
 ALTER TABLE `players` CHANGE `distance_traveled_on_pig` `distance_traveled_on_pig` BIGINT UNSIGNED DEFAULT '0';
+
+-- ---------------------------
+-- Update DBVersion To 3
+-- --------------------------
+
+UPDATE `config` SET `dbVersion` = 3;
