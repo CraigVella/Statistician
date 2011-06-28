@@ -7,6 +7,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Slime;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import com.ChaseHQ.Statistician.StatisticianPlugin;
@@ -154,6 +155,21 @@ public class EDHPlayer {
 		});
 	}
 	
+	public void PlayerKilledBySlime(final Player victim, final Slime creature, final DamageCause cause) {
+		// I cant believe i need this here because Slimes arent considered Creatures
+		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
+			@Override
+			public void run() {
+				KillTag kt = new KillTag();
+				kt.Killed = StatDBStaticValue_Creatures.PLAYER;
+				kt.Killed_UUID = victim.getUniqueId().toString();
+				kt.KilledBy = StatDBStaticValue_Creatures.SLIME;
+				kt.KillType = StatDBStaticValue_KillTypes.mapDamageCause(cause);
+				StatisticianPlugin.getEnabledPlugin().getPlayerData().addKillTag(victim.getUniqueId().toString(), kt);
+			}
+		});
+	}
+	
 	public void PlayerKilledByCreatureProjectile (final Player victim, final Creature creature, final Entity projectile, final DamageCause cause) {
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
@@ -190,12 +206,55 @@ public class EDHPlayer {
 		});
 	}
 	
+	public void PlayerKilledSlime (final Player killer, final Slime creature, final DamageCause cause) {
+		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
+			@Override
+			public void run() {
+				KillTag kt = new KillTag();
+				kt.Killed = StatDBStaticValue_Creatures.SLIME;
+				kt.KilledBy = StatDBStaticValue_Creatures.PLAYER;
+				kt.KilledBy_UUID = killer.getUniqueId().toString();
+				kt.KillType = StatDBStaticValue_KillTypes.mapDamageCause(cause);
+				kt.KilledUsing = killer.getItemInHand().getTypeId();
+				
+				if (kt.KilledUsing == 0) {
+					// Map it to Hand instead of air
+					kt.KilledUsing = 9001;
+				}
+				
+				StatisticianPlugin.getEnabledPlugin().getPlayerData().addKillTag(killer.getUniqueId().toString(), kt);
+			}
+		});
+	}
+	
 	public void PlayerKilledCreatureProjectile(final Player killer, final Creature creature, final Entity projectile, final DamageCause cause) {
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
 				KillTag kt = new KillTag();
 				kt.Killed = StatDBStaticValue_Creatures.mapCreature(creature);
+				kt.KilledBy = StatDBStaticValue_Creatures.PLAYER;
+				kt.KilledBy_UUID = killer.getUniqueId().toString();
+				kt.KillType = StatDBStaticValue_KillTypes.mapDamageCause(cause);
+				kt.KillProjectile = StatDBStaticValue_Projectiles.mapProjectile(projectile);
+				kt.KilledUsing = killer.getItemInHand().getTypeId();
+				
+				if (kt.KilledUsing == 0) {
+					// Map it to Hand instead of air
+					kt.KilledUsing = 9001;
+				}
+				
+				StatisticianPlugin.getEnabledPlugin().getPlayerData().addKillTag(killer.getUniqueId().toString(), kt);
+			}
+		});
+	}
+	
+	public void PlayerKilledSlimeProjectile(final Player killer, final Slime creature, final Entity projectile, final DamageCause cause) {
+		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
+			@Override
+			public void run() {
+				KillTag kt = new KillTag();
+				kt.Killed = StatDBStaticValue_Creatures.SLIME;
 				kt.KilledBy = StatDBStaticValue_Creatures.PLAYER;
 				kt.KilledBy_UUID = killer.getUniqueId().toString();
 				kt.KillType = StatDBStaticValue_KillTypes.mapDamageCause(cause);
