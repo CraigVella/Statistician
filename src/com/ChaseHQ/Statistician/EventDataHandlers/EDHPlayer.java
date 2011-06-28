@@ -11,6 +11,7 @@ import org.bukkit.entity.Slime;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 import com.ChaseHQ.Statistician.StatisticianPlugin;
+import com.ChaseHQ.Statistician.Database.StatDB;
 import com.ChaseHQ.Statistician.Database.StatDBSynchDataGetSet;
 import com.ChaseHQ.Statistician.Database.DataValues.StatDBDataStores;
 import com.ChaseHQ.Statistician.Database.DataValues.StatDBDataValues_Config;
@@ -27,25 +28,27 @@ public class EDHPlayer {
 			@Override
 			public void run() {
 				try {
-				if (StatDBSynchDataGetSet.isPlayerInDB(player.getUniqueId().toString())) {
-					// Player Exists and has been here before
-					StatDBSynchDataGetSet.playerLogin(player.getUniqueId().toString());
-					if (StatDBDataValues_Config.SHOW_LASTJOIN_WELCOME.getConfigValueBoolean()){
-						// Show Last Joined Message
-						String lastJoinMessage = StringHandler.formatForChat(StatDBDataValues_Config.LASTJOIN_WELCOME_MSG.getConfigValueString(), player);
-						String timeStamp = StatDBSynchDataGetSet.getValue(StatDBDataStores.PLAYER, StatDBDataValues_Players.LAST_LOGOUT, StatDBDataValues_Players.UUID, player.getUniqueId().toString());
-						String lastJoin = new SimpleDateFormat(StatDBDataValues_Config.DATE_FORMAT.getConfigValueString()).format(new Date(Long.parseLong(timeStamp) * 1000));
-						lastJoinMessage = lastJoinMessage.replaceAll("\\{lastJoin}", lastJoin);
-						player.sendMessage(lastJoinMessage);
+					if (StatDBSynchDataGetSet.isPlayerInDB(player.getUniqueId().toString())) {
+						// Player Exists and has been here before
+						StatDBSynchDataGetSet.playerLogin(player.getUniqueId().toString());
+						if (StatDBDataValues_Config.SHOW_LASTJOIN_WELCOME.getConfigValueBoolean()){
+							// Show Last Joined Message
+							String lastJoinMessage = StringHandler.formatForChat(StatDBDataValues_Config.LASTJOIN_WELCOME_MSG.getConfigValueString(), player);
+							String timeStamp = StatDBSynchDataGetSet.getValue(StatDBDataStores.PLAYER, StatDBDataValues_Players.LAST_LOGOUT, StatDBDataValues_Players.UUID, player.getUniqueId().toString());
+							String lastJoin = new SimpleDateFormat(StatDBDataValues_Config.DATE_FORMAT.getConfigValueString()).format(new Date(Long.parseLong(timeStamp) * 1000));
+							lastJoinMessage = lastJoinMessage.replaceAll("\\{lastJoin}", lastJoin);
+							player.sendMessage(lastJoinMessage);
+						}
+					} else {
+						// First Time Player Logged in with Statistician Running
+						StatDBSynchDataGetSet.playerCreate(player.getUniqueId().toString(),player.getName());
+						if (StatDBDataValues_Config.SHOW_FIRSTJOIN_WELCOME.getConfigValueBoolean()) {
+							// If they want to show first join message
+							player.sendMessage(StringHandler.formatForChat(StatDBDataValues_Config.FIRSTJOIN_WELCOME_MSG.getConfigValueString(), player));
+						}
 					}
-				} else {
-					// First Time Player Logged in with Statistician Running
-					StatDBSynchDataGetSet.playerCreate(player.getUniqueId().toString(),player.getName());
-					if (StatDBDataValues_Config.SHOW_FIRSTJOIN_WELCOME.getConfigValueBoolean()) {
-						// If they want to show first join message
-						player.sendMessage(StringHandler.formatForChat(StatDBDataValues_Config.FIRSTJOIN_WELCOME_MSG.getConfigValueString(), player));
-					}
-				}
+					// Check and update the most users ever logged on
+					StatDB.getDB().callStoredProcedure("updateMostEverOnline", null);
 				} catch (NullPointerException e) {
 					
 				} finally {
