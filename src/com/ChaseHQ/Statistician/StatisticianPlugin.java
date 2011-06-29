@@ -16,6 +16,8 @@ import com.ChaseHQ.Statistician.Listeners.StatisticianBlockListener;
 import com.ChaseHQ.Statistician.Listeners.StatisticianEntityListener;
 import com.ChaseHQ.Statistician.Listeners.StatisticianPlayerListener;
 import com.ChaseHQ.Statistician.Stats.PlayerData;
+import com.nijiko.permissions.PermissionHandler;
+import com.nijikokun.bukkit.Permissions.Permissions;
 
 public class StatisticianPlugin extends JavaPlugin { 
 	
@@ -24,6 +26,7 @@ public class StatisticianPlugin extends JavaPlugin {
 	private DataProcessor _dprocessor;
 	private PlayerData _playerData;
 	private EDHPlayer eventDataHandlerPlayer;
+	private PermissionHandler permissions;
 
 	@Override
 	public void onDisable() {
@@ -64,10 +67,22 @@ public class StatisticianPlugin extends JavaPlugin {
 			return;
 		}
 		
-		// Download mySQL Dependency
+		// Check mySQL Dependency
 		if (StatDB.getDB() == null) {
 			getPluginLoader().disablePlugin(this);
 			return;
+		}
+		
+		// Load Permissions if available
+		if (this.getServer().getPluginManager().getPlugin("Permissions") != null) {
+			Log.ConsoleLog("Found Permissions Plugin");
+			permissions = ((Permissions)this.getServer().getPluginManager().getPlugin("Permissions")).getHandler();
+			if (permissions != null) 
+				Log.ConsoleLog("Succesfully Hooked Into Permissions");
+			else 
+				Log.ConsoleLog("Failed Hooking Into Permissions - All stats will be recorded");
+		} else {
+			Log.ConsoleLog("Permissions Plugin Not Found - All stats will be recorded");
 		}
 		
 		StatDB.getDB().callStoredProcedure("pluginStartup", null);
@@ -132,6 +147,14 @@ public class StatisticianPlugin extends JavaPlugin {
 	
 	public PlayerData getPlayerData() {
 		return _playerData;
+	}
+	
+	public boolean permissionToRecordStat(Player player) {
+		if (permissions != null) {
+			if (permissions.has(player, "Statistician.ignore"))
+				return false;
+		}
+		return true;
 	}
 
 }

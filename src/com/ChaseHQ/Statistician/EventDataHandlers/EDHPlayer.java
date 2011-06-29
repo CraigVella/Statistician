@@ -24,6 +24,9 @@ import com.ChaseHQ.Statistician.Utils.StringHandler;
 
 public class EDHPlayer {
 	public void PlayerJoin(final Player player) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(player)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -60,6 +63,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerQuit(final Player player) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(player)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -72,6 +78,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerBlockBreak(final Player player, final Integer blockID) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(player)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -81,6 +90,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerBlockPlace(final Player player, final Integer blockID) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(player)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -90,6 +102,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerMove(final Player player, final boolean isInMinecart, final boolean isOnPig, final boolean isInBoat) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(player)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -99,6 +114,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerKilledByPlayer(final Player killer, final Player victim, final DamageCause cause) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(killer) || !StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(victim)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -122,6 +140,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerKilledByPlayerProjectile(final Player killer, final Player victim, final Entity projectile, final DamageCause cause) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(killer) || !StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(victim)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -145,6 +166,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerKilledByCreature(final Player victim, final Creature creature, final DamageCause cause) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(victim)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -159,6 +183,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerKilledBySlime(final Player victim, final Slime creature, final DamageCause cause) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(victim)) return;
+		
 		// I cant believe i need this here because Slimes arent considered Creatures
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
@@ -174,6 +201,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerKilledByCreatureProjectile (final Player victim, final Creature creature, final Entity projectile, final DamageCause cause) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(victim)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -189,6 +219,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerKilledCreature (final Player killer, final Creature creature, final DamageCause cause) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(killer)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -210,6 +243,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerKilledSlime (final Player killer, final Slime creature, final DamageCause cause) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(killer)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -231,6 +267,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerKilledCreatureProjectile(final Player killer, final Creature creature, final Entity projectile, final DamageCause cause) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(killer)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -253,6 +292,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerKilledSlimeProjectile(final Player killer, final Slime creature, final Entity projectile, final DamageCause cause) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(killer)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -275,6 +317,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerKilledByBlock (final Player victim, final Block block, final DamageCause cause) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(victim)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -292,6 +337,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerKilledByOtherCause(final Player victim, final DamageCause cause) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(victim)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -305,6 +353,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerPickedUpItem(final Player player, final Integer itemID, final Integer numberInStack) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(player)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
@@ -314,6 +365,9 @@ public class EDHPlayer {
 	}
 	
 	public void PlayerDroppedItem(final Player player, final Integer itemID, final Integer numberInStack) {
+		// Permission Check
+		if (!StatisticianPlugin.getEnabledPlugin().permissionToRecordStat(player)) return;
+		
 		StatisticianPlugin.getEnabledPlugin().getExecutor().execute(new Runnable() {
 			@Override
 			public void run() {
