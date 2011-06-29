@@ -151,6 +151,8 @@ public class StatisticianPlugin extends JavaPlugin {
 	
 	public boolean permissionToRecordStat(Player player) {
 		if (permissions != null) {
+			if (permissions.has(player, "Statistician.ignoreOverride"))
+				return true;
 			if (permissions.has(player, "Statistician.ignore"))
 				return false;
 		}
