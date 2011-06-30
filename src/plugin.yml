@@ -1,6 +1,6 @@
 name: Statistician
 main: com.ChaseHQ.Statistician.StatisticianPlugin
-version: 1.2.3
+version: 1.3
 author: ChaseHQ
 softdepend:
     - Permissions
