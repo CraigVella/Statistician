@@ -19,6 +19,7 @@ import com.ChaseHQ.Statistician.Config.PackedDependencyVersions;
 import com.ChaseHQ.Statistician.Database.StatDB;
 import com.ChaseHQ.Statistician.EventDataHandlers.EDHPlayer;
 import com.ChaseHQ.Statistician.Listeners.StatisticianBlockListener;
+import com.ChaseHQ.Statistician.Listeners.StatisticianCBInventoryListener;
 import com.ChaseHQ.Statistician.Listeners.StatisticianEntityListener;
 import com.ChaseHQ.Statistician.Listeners.StatisticianPlayerListener;
 import com.ChaseHQ.Statistician.Stats.PlayerData;
@@ -106,6 +107,8 @@ public class StatisticianPlugin extends JavaPlugin {
 		StatisticianBlockListener _bl = new StatisticianBlockListener(eventDataHandlerPlayer);
 		StatisticianEntityListener _el = new StatisticianEntityListener(eventDataHandlerPlayer);
 		
+		StatisticianCBInventoryListener _cbil = new StatisticianCBInventoryListener(eventDataHandlerPlayer);
+		
 		PluginManager pm = getServer().getPluginManager();
 		
 		// Release Build Register only used events
@@ -120,6 +123,8 @@ public class StatisticianPlugin extends JavaPlugin {
 		pm.registerEvent(Event.Type.PLAYER_MOVE, _pl, Event.Priority.Normal, this);
 		pm.registerEvent(Event.Type.PLAYER_PICKUP_ITEM, _pl, Event.Priority.Normal, this);
 		pm.registerEvent(Event.Type.PLAYER_DROP_ITEM, _pl, Event.Priority.Normal, this);
+
+		// TODO: Register Inventory Craft Event
 		
 		_playerData = new PlayerData();
 		
