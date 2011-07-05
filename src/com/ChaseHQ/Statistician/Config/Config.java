@@ -9,7 +9,7 @@ import com.ChaseHQ.Statistician.Log;
 
 
 public class Config {
-	public static final String StatisticianVersion = "1.3";
+	public static final String StatisticianVersion = "1.4";
 	public static final Integer DBVersion = 5;
 	public static final String LogPrefix = "[Statistician]";
 	public static final String MainDirectory = "plugins/Statistician/";

@@ -135,6 +135,10 @@ public class StatisticianPlugin extends JavaPlugin {
 		
 		new Timer(true).scheduleAtFixedRate(_dprocessor, Config.getConfig().get_databaseUpdateTime() * 1000, Config.getConfig().get_databaseUpdateTime() * 1000);
 		
+		// This could be a reload so see if people are logged in
+		for (Player player : getServer().getOnlinePlayers()) {
+			eventDataHandlerPlayer.PlayerJoin(player);
+		}
 	}
 	
 	public ExecutorService getExecutor() {
