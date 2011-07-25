@@ -1,8 +1,9 @@
 Statistician - Extreme Minecraft Stat Keeping by ChaseHQ
 
 Features:
+----------------
 
------------------------------Many different types of statistics stored:-------------
+-----------------------------Many different types of statistics stored:-----------------------------
 - Server stats (Uptime, max players online)
 - Player stats (Kills PvE and PvP, blocks placed/destroyed, distance travelled, items picked/dropped, total time online)
 
@@ -11,7 +12,7 @@ Features:
 to your server.
 - Providing you have the webspace for it with PHP installed you're good to go, check out the installation instructions for it below.
 
------------------------------mySQL database storage for the stats-------------------
+-----------------------------mySQL database storage for the stats-----------------------------
 - Quick and easy access to all of your stats yourself or through a web portal. (A detailed list of tables can be found at the bottom of this readme)
 
 -----------------------------Customisable join messages-----------------------------
@@ -20,11 +21,13 @@ to your server.
 -----------------------------Permissions integration--------------------------------
 - For Permissions to work you must have the Permissions plugin installed!
 
+
+
 Requirements:
 -------------------
-
 MySQL Ver 5 or Higher for tracking stats
 Web server with PHP extensions installed if you want to use bundled web portal
+
 
 Installation (Plugin):
 ---------------------------
