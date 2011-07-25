@@ -3,30 +3,31 @@ Statistician - Extreme Minecraft Stat Keeping by ChaseHQ
 Features:
 
 -----------------------------Many different types of statistics stored:-------------
-	Server stats (Uptime, max players online)
-	Player stats (Kills PvE and PvP, blocks placed/destroyed, distance travelled, items picked/dropped, total time online)
+- Server stats (Uptime, max players online)
+- Player stats (Kills PvE and PvP, blocks placed/destroyed, distance travelled, items picked/dropped, total time online)
 
 -----------------------------Built in web portal------------------------------------
-	Let the world view all of your server and player stats! A complete web page featuring a multitude of statistics unique 
+- Let the world view all of your server and player stats! A complete web page featuring a multitude of statistics unique 
 to your server.
-	Providing you have the webspace for it with PHP installed you're good to go, check out the installation instructions for it below.
+- Providing you have the webspace for it with PHP installed you're good to go, check out the installation instructions for it below.
 
 -----------------------------mySQL database storage for the stats-------------------
-	Quick and easy access to all of your stats yourself or through a web portal. (A detailed list of tables can be found at the bottom of this readme)
+- Quick and easy access to all of your stats yourself or through a web portal. (A detailed list of tables can be found at the bottom of this readme)
 
 -----------------------------Customisable join messages-----------------------------
-	These settings can be found in the 'Config' table in your database.
+- These settings can be found in the 'Config' table in your database.
 
 -----------------------------Permissions integration--------------------------------
-	For Permissions to work you must have the Permissions plugin installed!
+- For Permissions to work you must have the Permissions plugin installed!
 
 Requirements:
+-------------------
 
 MySQL Ver 5 or Higher for tracking stats
 Web server with PHP extensions installed if you want to use bundled web portal
 
 Installation (Plugin):
-
+---------------------------
 - Drop JAR file into plugin directory
 - Run Bukkit once, it will make a config folder
 - Create MySQL Database
@@ -35,6 +36,7 @@ Installation (Plugin):
 - Start bukkit up again, it should connect and auto create the database
 
 Installation (Web Portal):
+----------------------------
 - Drop the web portal folder into a web served folder
 - Open the config.php file in the Statistician folder
 - Edit the database connection settings
@@ -42,9 +44,18 @@ Installation (Web Portal):
 
 
 Commonly asked questions:
-
+----------------------------
 [Q] What are the table names?
 [A] blocks, config, creatures,kill_types, kills, pickup_drop, players, projectiles, resource_desc, server
+
+[Q] How do I change the join messages?
+[A} In the 'config' table there are 4 fields:
+
+'show_firstjoin_welcome' AND 'show_lastjoin_welcome'
+These are either 'yes' or 'no'. The control whether the messages appear or not.
+
+'firstjoin_welcome_msg' AND 'lastjoin_welcome_message'
+These are the actual messages that will be displayed.
 
 [Q]I am getting this error "[SEVERE] Error occurred while enabling Statistician v1.3 (Is it up to date?): java.lang.Integer cannot be cast to java.lang.String"
 [A] This is most likely down to your DBConfig.yml being incorrect, there are a few checks you can do. This is how it should look:
