@@ -25,7 +25,7 @@ Installation (Plugin):
 - Drop JAR file into plugin directory
 - Run Bukkit once, it will make a config folder
 - Create MySQL Database
-- Create a User for that Database and grant it a ALL Privliges on that database
+- Create a user for that Database and grant it a ALL Privliges on that database
 - Edit the config file with your database settings
 - Start bukkit up again, it should connect and auto create the database
 
